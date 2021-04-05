@@ -15,7 +15,7 @@ class CategoriaControlador extends Controller
      */
     public function index()
     {
-        $categorias = Categoria::with('preparados')->get();
+        $categorias = Categoria::with(['preparados' => function($query){$query->orderBy('PREPARADOS_NOMBRE','asc');}])->where('estado', '=', 0)->get();
         return $categorias;
     }
 
